@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
-import './App.css';
+import "./App.css";
 import Scroll from "../components/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary";
 // state is an object that describes your application
@@ -11,24 +11,28 @@ class App extends Component {
     super();
     this.state = {
       robots: [],
-      searchField: ''
-    }
+      searchField: "",
+    };
   }
   componentDidMount() {
-    fetch('http://jsonplaceholder.typicode.com/users')
-      .then(response => { return response.json(); })
-      .then(users => { this.setState({ robots: users }) });
+    fetch("http://jsonplaceholder.typicode.com/users")
+      .then((response) => {
+        return response.json();
+      })
+      .then((users) => {
+        this.setState({ robots: users });
+      });
   }
   onSearchChange = (event) => {
-    this.setState({ searchField: event.target.value })
-  }
+    this.setState({ searchField: event.target.value });
+  };
   render() {
-    const { robots, searchField } = this.state
-    const filteredRobots = robots.filter(robot => {
-      return robot.name.toLowerCase().includes(searchField.toLowerCase())
-    })
+    const { robots, searchField } = this.state;
+    const filteredRobots = robots.filter((robot) => {
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
+    });
     if (!robots.length) {
-      return <h1>Loading</h1>
+      return <h1>Loading</h1>;
     } else {
       return (
         <div className="tc">
